@@ -1,0 +1,36 @@
+body {
+	background-image: url("../images/Millenium Falcon background.png");
+	font-family: 'Russo One', sans-serif;
+
+}
+
+.rightImage {
+	width:250px;
+	height: 200px;
+	float: right;
+}
+.clearfloat{
+	clear: both;
+}
+img {
+	box-sizing: border-box;
+	width: 85%;
+	height:70%;
+	border: 1px solid black;
+	margin: 5px;	
+}
+.img-box {
+	width: 160px;
+	height: 200px;
+	padding: 10px;
+	background-color: white;	
+	border: 2px solid green;
+	margin-left: 5px;
+}
+.lighterText {
+	color:#778899;
+}
+a:hover {
+	font-style: italic;
+	color:red;
+}

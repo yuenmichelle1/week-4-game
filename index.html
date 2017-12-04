@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Star Wars RPG!</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
+	<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="rightImage">
+					<img src="assets/images/RPG StarWars Logo.png">
+				</div>
+				<div class="clearfloat"> </div>	
+			</div>
+		</div>
+		<div id="forceOrdarkside" class="row">
+			<div class="col-md-2 col-xs-2">
+				<span id="yoda">
+					<div class="img-box">
+						<p class="text-center">Master Yoda</p>
+						<img src="assets/images/Master-Yoda-Lightsaber.jpg" class="center-block">
+						<p id="yodaHP" class="text-center"></p>
+					</div>	
+				</span>		
+			</div>
+			<div class="col-md-2 col-xs-2">
+				<span id="princess">
+					<div class="img-box">
+						<p class="text-center">Princess Leia</p>
+						<img src="assets/images/Princess Leia.jpg" class="center-block">
+						<p id="leiaHP" class="text-center"> </p>
+					</div>
+				</span>	
+			</div>
+			<div class="col-md-2 col-xs-2">
+				<span id="ben">
+					<div class="img-box">
+						<p class="text-center">Kylo Ren</p>
+						<img src="assets/images/Kylo Ren.jpeg" class="center-block">
+						<p id="kyloHP" class="text-center"> </p>
+					</div>
+				</span>	
+			</div>
+			<div class="col-md-2 col-xs-2">
+				<span id="anikin">
+					<div class="img-box">
+						<p class="text-center"> Darth Vader</p>				
+						<img src="assets/images/darth vader.jpg" class= "center-block">
+						<p id="vaderHP" class="text-center"> </p>
+					</div>
+				</span>	
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<h3>Your Character</h3>
+				<div id="playerChoice"> </div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<h3>Enemies Available to Attack</h3>
+				<div id="availableEnemies"> </div>
+			</div>	
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<h3>Fight Section</h3>
+				<button type="button"><a>Attack</a></button>
+			</div>	
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<h3 class="lighterText">Defender</h3>
+				<div id="Enemy"> </div>
+			</div>
+		</div>
+		<div class="row"></div>
+
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="assets/javascript/game.js"></script>
+</body>
+</html>
