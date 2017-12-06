@@ -20,6 +20,11 @@ var vader = {
 	"counterAttack":8
 }
 
+// making an array of characters 
+//var possibleCharacters = ["master yoda", "general leia", "ben solo", "luke father"];
+var playerCharacter = "";
+var enemyCharacter = ""; 
+
 $("#yodaHP").html(yoda.HP); 
 $("#leiaHP").html(leia.HP);
 $("#kyloHP").html(kylo.HP);
@@ -30,9 +35,11 @@ var check =0;
 $("#yoda").on("click", function(){
 	if (flag !=1 && flag !=0) {
 		$("#Enemy").append($("#yoda"));
+		enemyCharacter=yoda; 
 	}
 	 else if (flag ===0){
 	 	flag=1;
+	 	playerCharacter=yoda;
 		$("#playerChoice").append($("#yoda"));
 		$("#availableEnemies").append($("#princess"),$("#ben"),$("#anikin"));
 		$("#availableEnemies .img-box").addClass("redEnemy");
@@ -42,9 +49,11 @@ $("#yoda").on("click", function(){
 $("#princess").on("click", function(){
 	if (flag !=2 && flag !=0){
 		$("#Enemy").append($("#princess"));
+		enemyCharacter=leia;
 	}
 	else if (flag ===0){
 		flag=2;
+		playerCharacter=leia;
 		$("#playerChoice").append($("#princess"));
 		$("#availableEnemies").append($("#yoda"), $("#ben"),$("#anikin"));
 		$("#availableEnemies .img-box").addClass("redEnemy");
@@ -54,8 +63,10 @@ $("#princess").on("click", function(){
 $("#ben").on("click", function(){
 	if (flag !=3 && flag !=0){
 		$("#Enemy").append($("#ben"));
+		enemyCharacter=kylo;
 	}else if (flag===0){
 	flag=3;
+	playerCharacter=kylo;
 	$("#playerChoice").append($("#ben"));
 	$("#availableEnemies").append($("#yoda"), $("#princess"), $("#anikin"));
 	$("#availableEnemies .img-box").addClass("redEnemy");
@@ -65,8 +76,10 @@ $("#ben").on("click", function(){
 $("#anikin").on("click",function(){
 	if (flag !=4 && flag !=0){
 		$("#Enemy").append($("#anikin"));
+		enemyCharacter=vader;
 	}else if (flag===0){
 	flag=4;
+	playerCharacter=vader;
 	$("#playerChoice").append($("#anikin"));
 	$("#availableEnemies").append($("#yoda"), $("#princess"),$("#ben"));
 	$("#availableEnemies .img-box").addClass("redEnemy");
@@ -75,5 +88,11 @@ $("#anikin").on("click",function(){
 });
 
 $(".button").on("click", function(){
-	
+	// playerCharacterHp attack enemy character hp
+	playerCharacter.HP= playerCharacter.HP - enemyCharacter.counterAttack;
+	//display new HP for character and Enemy
+	enemyCharacter.HP = enemyCharacter.HP -playerCharacter.Attack;
+	//increase playerCharacterAttack by its base
+
+
 })
