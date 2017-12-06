@@ -7,14 +7,15 @@ body {
 .rightImage {
 	width:250px;
 	height: 200px;
-	float: right;
+	float:right;
+
 }
 .clearfloat{
 	clear: both;
 }
 img {
 	box-sizing: border-box;
-	width: 85%;
+	width: 90%;
 	height:70%;
 	border: 1px solid black;
 	margin: 5px;	
@@ -33,4 +34,11 @@ img {
 a:hover {
 	font-style: italic;
 	color:red;
+}
+.redEnemy{
+	background-color: red;
+	float: left;
+}
+.whiteBox{
+	background-color: white;
 }
