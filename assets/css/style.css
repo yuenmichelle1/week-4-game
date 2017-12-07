@@ -41,4 +41,5 @@ a:hover {
 }
 .whiteBox{
 	background-color: white;
+	float: left;
 }

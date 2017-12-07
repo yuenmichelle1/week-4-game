@@ -6,7 +6,7 @@ var yoda = {
 }
 var leia = {
 	"HP" :140,
-	"Attack" : 9,
+	"Attack" : 1,
 	"counterAttack": 9
 }
 var kylo = {
@@ -20,18 +20,34 @@ var vader = {
 	"counterAttack":8
 }
 
+
 // making an array of characters 
 //var possibleCharacters = ["master yoda", "general leia", "ben solo", "luke father"];
 var playerCharacter = "";
 var enemyCharacter = ""; 
-
+var buttonCount = 0;
 $("#yodaHP").html(yoda.HP); 
 $("#leiaHP").html(leia.HP);
 $("#kyloHP").html(kylo.HP);
 $("#vaderHP").html(vader.HP);
+
+function reset(){
+yoda.HP = 200;
+leia.HP =140;
+kylo.HP = 160;
+vader.HP =180;
+$("#forceOrdarkside").append($("#yoda"), $("#princess"), $("#ben"), $("#anikin"));
+$("#forceOrdarkside .img-box").addClass("whiteBox");	
+$("#yodaHP").html(yoda.HP); 
+$("#leiaHP").html(leia.HP);
+$("#kyloHP").html(kylo.HP);
+$("#vaderHP").html(vader.HP);
+}
+
 //when clicked move playerChoice to 'Your Character and move others to Enemies Availavle to attack'
 var flag=0;
 var check =0; 
+
 $("#yoda").on("click", function(){
 	if (flag !=1 && flag !=0) {
 		$("#Enemy").append($("#yoda"));
@@ -87,12 +103,50 @@ $("#anikin").on("click",function(){
 	}
 });
 
-$(".button").on("click", function(){
+$("button").on("click", function(){
 	// playerCharacterHp attack enemy character hp
-	playerCharacter.HP= playerCharacter.HP - enemyCharacter.counterAttack;
+	playerCharacter.HP-= enemyCharacter.counterAttack;
 	//display new HP for character and Enemy
-	enemyCharacter.HP = enemyCharacter.HP -playerCharacter.Attack;
-	//increase playerCharacterAttack by its base
+	if (playerCharacter=== yoda){
+		$("#yodaHP").html(playerCharacter.HP);
+	} else if (playerCharacter=== leia){
+		$("#leiaHP").html(playerCharacter.HP);
+	} else if (playerCharacter === kylo) {
+		$("#kyloHP").html(playerCharacter.HP);
+	} else if (playerCharacter=== vader){
+		$("#vaderHP").html(playerCharacter.HP);
+	}
+	buttonCount++;
+	var newAttack = playerCharacter.Attack * buttonCount;
 
+	enemyCharacter.HP = enemyCharacter.HP - newAttack;
+	if (enemyCharacter=== yoda){
+		$("#yodaHP").html(enemyCharacter.HP);
+	} else if (enemyCharacter=== leia){
+		$("#leiaHP").html(enemyCharacter.HP);
+	} else if (enemyCharacter === kylo) {
+		$("#kyloHP").html(enemyCharacter.HP);
+	} else if (enemyCharacter=== vader){
+		$("#vaderHP").html(enemyCharacter.HP);
+	}
+	//increase playerCharacterAttack by its base
+	if (playerCharacter.HP <= 0){
+	alert('You lose');
+	reset();
+	};
+	if (enemyCharacter.HP <=0){
+		alert('Choose another enemy to attack!');
+			if (enemyCharacter=== yoda){
+			$("#yoda").remove();
+		} else if (enemyCharacter=== leia){
+			$("#princess").remove();
+		} else if (enemyCharacter === kylo) {
+			$("#ben").remove();
+		} else if (enemyCharacter=== vader){
+			$("#anikin").remove();
+		}
+
+	}
 
 })
+
