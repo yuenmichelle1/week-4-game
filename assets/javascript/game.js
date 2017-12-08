@@ -6,7 +6,7 @@ var yoda = {
 }
 var leia = {
 	"HP" :140,
-	"Attack" : 1,
+	"Attack" : 4,
 	"counterAttack": 9
 }
 var kylo = {
@@ -70,6 +70,7 @@ $("#yoda").on("click", function(){
 	if (flag !=1 && flag !=0 && $("#Enemy").html() == " ") {
 		$("#Enemy").append($("#yoda"));
 		enemyCharacter=yoda; 
+		enemyCharacter.counterAttack=yoda.counterAttack
 	}
 	 else if (flag ===0){
 	 	flag=1;
@@ -85,6 +86,7 @@ $("#princess").on("click", function(){
 	if (flag !=2 && flag !=0 && $("#Enemy").html() == " "){
 		$("#Enemy").append($("#princess"));
 		enemyCharacter=leia;
+		enemyCharacter.counterAttack=leia.counterAttack
 	}
 	else if (flag ===0){
 		flag=2;
@@ -100,6 +102,7 @@ $("#ben").on("click", function(){
 	if (flag !=3 && flag !=0 && $("#Enemy").html() == " "){
 		$("#Enemy").append($("#ben"));
 		enemyCharacter=kylo;
+		enemyCharacter.counterAttack=kylo.counterAttack;
 	}else if (flag===0){
 		flag=3;
 		playerCharacter=kylo;
@@ -114,6 +117,7 @@ $("#anikin").on("click",function(){
 	if (flag !=4 && flag !=0 && $("#Enemy").html() == " "){
 		$("#Enemy").append($("#anikin"));
 		enemyCharacter=vader;
+		enemyCharacter.counterAttack=vader.counterAttack;
 	}else if (flag===0){
 		flag=4;
 		playerCharacter=vader;
@@ -126,7 +130,9 @@ $("#anikin").on("click",function(){
 });
 
 $("button").on("click", function(){
-
+	if (enemyCharacter == "") {
+	  return enemyCharacter.counterAttack=0;
+	}
 	// playerCharacterHp attack enemy character hp
 	playerCharacter.HP-= enemyCharacter.counterAttack;
 	//display new HP for character and Enemy
@@ -162,21 +168,21 @@ $("button").on("click", function(){
 		if (enemyCharacter=== yoda){
 			$("#yoda").addClass("hidden");
 			$(".master").append($("#yoda"));
-			enemyCharacter.counterAttack="";
+			enemyCharacter= "";
 		} else if (enemyCharacter=== leia){
 			$("#princess").addClass("hidden");
 			$(".lukeSister").append($("#princess"));
-			enemyCharacter.counterAttack="";
+			enemyCharacter="";
 		} else if (enemyCharacter === kylo) {
 			$("#ben").addClass("hidden");
 			$(".lukeNephew").append($("#ben"));
-			enemyCharacter.counterAttack="";
+			enemyCharacter="";
 		} else if (enemyCharacter=== vader){
 			$("#anikin").addClass("hidden");
 			$(".lukeFather").append($("#anikin"));
-			enemyCharacter.counterAttack="";
+			enemyCharacter="";
 		}
-	if ($("#availableEnemies").html() == " " && enemyCharacter.HP <=0){
+	if ($("#availableEnemies").html() == " " && $("#Enemy").html()==" "){
 		alert('You won!');
 		reset();
 		}
