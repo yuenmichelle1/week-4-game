@@ -48,9 +48,12 @@ function reset(){
 	$("#ben").addClass("visible");
 	$("#princess").addClass("visible");
 	$("#yoda").addClass("visible");
-	$("#forceOrdarkside").append($("#yoda"), $("#princess"), $("#ben"), $("#anikin"));
-	//, $("#princess"), $("#ben"), $("#anikin"));
-	//$("#forceOrdarkside").append($("#princess"));
+	//$("#forceOrdarkside").append($("#yoda"), $("#princess"), $("#ben"), $("#anikin"));
+	// $("#princess"), $("#ben"), $("#anikin"));
+	$(".lukeSister").append($("#princess"));
+	$(".master").append($("#yoda"));
+	$(".lukeNephew").append($("#ben"));
+	$(".lukeFather").append($("#anikin"));
 	$("#forceOrdarkside .img-box").addClass("whiteBox");	
 	$("#yodaHP").html(yoda.HP); 
 	$("#leiaHP").html(leia.HP);
