@@ -50,11 +50,11 @@ function reset(){
 	$("#yoda").addClass("visible");
 	//$("#forceOrdarkside").append($("#yoda"), $("#princess"), $("#ben"), $("#anikin"));
 	// $("#princess"), $("#ben"), $("#anikin"));
-	$(".lukeSister").append($("#princess"));
 	$(".master").append($("#yoda"));
+	$(".lukeSister").append($("#princess"));
 	$(".lukeNephew").append($("#ben"));
 	$(".lukeFather").append($("#anikin"));
-	$("#forceOrdarkside .img-box").addClass("whiteBox");	
+	$(".img-box").addClass("whiteBox");	
 	$("#yodaHP").html(yoda.HP); 
 	$("#leiaHP").html(leia.HP);
 	$("#kyloHP").html(kylo.HP);
@@ -67,7 +67,7 @@ var flag=0;
 var check =0; 
 
 $("#yoda").on("click", function(){
-	if (flag !=1 && flag !=0) {
+	if (flag !=1 && flag !=0 && $("#Enemy").html() == " ") {
 		$("#Enemy").append($("#yoda"));
 		enemyCharacter=yoda; 
 	}
@@ -77,11 +77,12 @@ $("#yoda").on("click", function(){
 		$("#playerChoice").append($("#yoda"));
 		$("#availableEnemies").append($("#princess"),$("#ben"),$("#anikin"));
 		$("#availableEnemies .img-box").addClass("redEnemy");
+		$("#availableEnemies .img-box").removeClass("whiteBox");
 		$("#playerChoice .img-box").addClass("whiteBox");
 	}
 });
 $("#princess").on("click", function(){
-	if (flag !=2 && flag !=0){
+	if (flag !=2 && flag !=0 && $("#Enemy").html() == " "){
 		$("#Enemy").append($("#princess"));
 		enemyCharacter=leia;
 	}
@@ -91,11 +92,12 @@ $("#princess").on("click", function(){
 		$("#playerChoice").append($("#princess"));
 		$("#availableEnemies").append($("#yoda"), $("#ben"),$("#anikin"));
 		$("#availableEnemies .img-box").addClass("redEnemy");
+		$("#availableEnemies .img-box").removeClass("whiteBox");
 		$("#playerChoice .img-box").addClass("whiteBox");
 	}	
 });
 $("#ben").on("click", function(){
-	if (flag !=3 && flag !=0){
+	if (flag !=3 && flag !=0 && $("#Enemy").html() == " "){
 		$("#Enemy").append($("#ben"));
 		enemyCharacter=kylo;
 	}else if (flag===0){
@@ -104,11 +106,12 @@ $("#ben").on("click", function(){
 		$("#playerChoice").append($("#ben"));
 		$("#availableEnemies").append($("#yoda"), $("#princess"), $("#anikin"));
 		$("#availableEnemies .img-box").addClass("redEnemy");
+		$("#availableEnemies .img-box").removeClass("whiteBox");
 		$("#playerChoice .img-box").addClass("whiteBox");
 	}
 });
 $("#anikin").on("click",function(){
-	if (flag !=4 && flag !=0){
+	if (flag !=4 && flag !=0 && $("#Enemy").html() == " "){
 		$("#Enemy").append($("#anikin"));
 		enemyCharacter=vader;
 	}else if (flag===0){
@@ -117,11 +120,13 @@ $("#anikin").on("click",function(){
 		$("#playerChoice").append($("#anikin"));
 		$("#availableEnemies").append($("#yoda"), $("#princess"),$("#ben"));
 		$("#availableEnemies .img-box").addClass("redEnemy");
+		$("#availableEnemies .img-box").removeClass("whiteBox");
 		$("#playerChoice .img-box").addClass("whiteBox");		
 	}
 });
 
 $("button").on("click", function(){
+
 	// playerCharacterHp attack enemy character hp
 	playerCharacter.HP-= enemyCharacter.counterAttack;
 	//display new HP for character and Enemy
@@ -154,22 +159,33 @@ $("button").on("click", function(){
 	};
 	
 	if (enemyCharacter.HP <=0){
-		alert('Choose another enemy to attack!');
 		if (enemyCharacter=== yoda){
 			$("#yoda").addClass("hidden");
+			$(".master").append($("#yoda"));
+			enemyCharacter.counterAttack="";
 		} else if (enemyCharacter=== leia){
 			$("#princess").addClass("hidden");
+			$(".lukeSister").append($("#princess"));
+			enemyCharacter.counterAttack="";
 		} else if (enemyCharacter === kylo) {
 			$("#ben").addClass("hidden");
+			$(".lukeNephew").append($("#ben"));
+			enemyCharacter.counterAttack="";
 		} else if (enemyCharacter=== vader){
 			$("#anikin").addClass("hidden");
+			$(".lukeFather").append($("#anikin"));
+			enemyCharacter.counterAttack="";
 		}
-		if ($("#availableEnemies").html() == " " && enemyCharacter.HP <=0){
+	if ($("#availableEnemies").html() == " " && enemyCharacter.HP <=0){
 		alert('You won!');
 		reset();
 		}
 
 	}
+		
+	
+	
+	
 
 })
 
