@@ -36,6 +36,10 @@ function reset(){
 	leia.HP =140;
 	kylo.HP = 160;
 	vader.HP =180;
+	playerCharacter = "";
+	enemyCharacter = ""; 
+	buttonCount = 0;
+	flag=0;
 	$("#anikin").removeClass("hidden");
 	$("#ben").removeClass("hidden");
 	$("#princess").removeClass("hidden");
@@ -52,9 +56,7 @@ function reset(){
 	$("#leiaHP").html(leia.HP);
 	$("#kyloHP").html(kylo.HP);
 	$("#vaderHP").html(vader.HP);
-	playerCharacter = "";
-	enemyCharacter = ""; 
-	buttonCount = 0;
+	
 }
 
 //when clicked move playerChoice to 'Your Character and move others to Enemies Availavle to attack'
