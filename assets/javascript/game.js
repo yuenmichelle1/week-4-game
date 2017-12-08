@@ -32,16 +32,29 @@ $("#kyloHP").html(kylo.HP);
 $("#vaderHP").html(vader.HP);
 
 function reset(){
-yoda.HP = 200;
-leia.HP =140;
-kylo.HP = 160;
-vader.HP =180;
-$("#forceOrdarkside").append($("#yoda"), $("#princess"), $("#ben"), $("#anikin"));
-$("#forceOrdarkside .img-box").addClass("whiteBox");	
-$("#yodaHP").html(yoda.HP); 
-$("#leiaHP").html(leia.HP);
-$("#kyloHP").html(kylo.HP);
-$("#vaderHP").html(vader.HP);
+	yoda.HP = 200;
+	leia.HP =140;
+	kylo.HP = 160;
+	vader.HP =180;
+	$("#anikin").removeClass("hidden");
+	$("#ben").removeClass("hidden");
+	$("#princess").removeClass("hidden");
+	$("#yoda").removeClass("hidden");
+	$("#anikin").addClass("visible");
+	$("#ben").addClass("visible");
+	$("#princess").addClass("visible");
+	$("#yoda").addClass("visible");
+	$("#forceOrdarkside").append($("#yoda"), $("#princess"), $("#ben"), $("#anikin"));
+	//, $("#princess"), $("#ben"), $("#anikin"));
+	//$("#forceOrdarkside").append($("#princess"));
+	$("#forceOrdarkside .img-box").addClass("whiteBox");	
+	$("#yodaHP").html(yoda.HP); 
+	$("#leiaHP").html(leia.HP);
+	$("#kyloHP").html(kylo.HP);
+	$("#vaderHP").html(vader.HP);
+	playerCharacter = "";
+	enemyCharacter = ""; 
+	buttonCount = 0;
 }
 
 //when clicked move playerChoice to 'Your Character and move others to Enemies Availavle to attack'
@@ -81,12 +94,12 @@ $("#ben").on("click", function(){
 		$("#Enemy").append($("#ben"));
 		enemyCharacter=kylo;
 	}else if (flag===0){
-	flag=3;
-	playerCharacter=kylo;
-	$("#playerChoice").append($("#ben"));
-	$("#availableEnemies").append($("#yoda"), $("#princess"), $("#anikin"));
-	$("#availableEnemies .img-box").addClass("redEnemy");
-	$("#playerChoice .img-box").addClass("whiteBox");
+		flag=3;
+		playerCharacter=kylo;
+		$("#playerChoice").append($("#ben"));
+		$("#availableEnemies").append($("#yoda"), $("#princess"), $("#anikin"));
+		$("#availableEnemies .img-box").addClass("redEnemy");
+		$("#playerChoice .img-box").addClass("whiteBox");
 	}
 });
 $("#anikin").on("click",function(){
@@ -94,12 +107,12 @@ $("#anikin").on("click",function(){
 		$("#Enemy").append($("#anikin"));
 		enemyCharacter=vader;
 	}else if (flag===0){
-	flag=4;
-	playerCharacter=vader;
-	$("#playerChoice").append($("#anikin"));
-	$("#availableEnemies").append($("#yoda"), $("#princess"),$("#ben"));
-	$("#availableEnemies .img-box").addClass("redEnemy");
-	$("#playerChoice .img-box").addClass("whiteBox");		
+		flag=4;
+		playerCharacter=vader;
+		$("#playerChoice").append($("#anikin"));
+		$("#availableEnemies").append($("#yoda"), $("#princess"),$("#ben"));
+		$("#availableEnemies .img-box").addClass("redEnemy");
+		$("#playerChoice .img-box").addClass("whiteBox");		
 	}
 });
 
@@ -134,16 +147,21 @@ $("button").on("click", function(){
 	alert('You lose');
 	reset();
 	};
+	
 	if (enemyCharacter.HP <=0){
 		alert('Choose another enemy to attack!');
-			if (enemyCharacter=== yoda){
-			$("#yoda").remove();
+		if (enemyCharacter=== yoda){
+			$("#yoda").addClass("hidden");
 		} else if (enemyCharacter=== leia){
-			$("#princess").remove();
+			$("#princess").addClass("hidden");
 		} else if (enemyCharacter === kylo) {
-			$("#ben").remove();
+			$("#ben").addClass("hidden");
 		} else if (enemyCharacter=== vader){
-			$("#anikin").remove();
+			$("#anikin").addClass("hidden");
+		}
+		if ($("#availableEnemies").html() == " " && enemyCharacter.HP <=0){
+		alert('You won!');
+		reset();
 		}
 
 	}
