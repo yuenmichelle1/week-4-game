@@ -8,7 +8,6 @@ var leia = {
 	"HP" :140,
 	"Attack" : 4,
 	"counterAttack": 9,
-	"clickbox":$()
 };
 var kylo = {
 	"HP" : 160,
@@ -46,8 +45,6 @@ function reset(){
 	$("#ben").addClass("visible");
 	$("#princess").addClass("visible");
 	$("#yoda").addClass("visible");
-	//$("#forceOrdarkside").append($("#yoda"), $("#princess"), $("#ben"), $("#anikin"));
-	// $("#princess"), $("#ben"), $("#anikin"));
 	$(".master").append($("#yoda"));
 	$(".lukeSister").append($("#princess"));
 	$(".lukeNephew").append($("#ben"));
@@ -56,8 +53,7 @@ function reset(){
 	$("#yodaHP").html(yoda.HP); 
 	$("#leiaHP").html(leia.HP);
 	$("#kyloHP").html(kylo.HP);
-	$("#vaderHP").html(vader.HP);
-	
+	$("#vaderHP").html(vader.HP);	
 }
 
 function classes() {
@@ -65,6 +61,7 @@ function classes() {
 	$("#availableEnemies .img-box").removeClass("whiteBox");
 	$("#playerChoice .img-box").addClass("whiteBox");
 }
+var elementIds= ["#yoda","#princess", "#ben", "#anikin"];
 
 //when clicked move playerChoice to 'Your Character and move others to Enemies Availavle to attack'
 var flag=0;
