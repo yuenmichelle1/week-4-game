@@ -3,21 +3,25 @@ var yoda = {
 	"HP" : 200,
 	"Attack":15,
 	"counterAttack": 15,
+	"name" : "Yoda"
 };
 var leia = {
 	"HP" :140,
 	"Attack" : 4,
 	"counterAttack": 9,
+	"name": "Leia"
 };
 var kylo = {
 	"HP" : 160,
 	"Attack":3,
 	"counterAttack":6,
+	"name": "Kylo Ren"
 };
 var vader = {
 	"HP" : 180,
 	"Attack":5,
-	"counterAttack":5
+	"counterAttack":5,
+	"name": "Darth Vader"
 };
 
 var playerCharacter = "";
@@ -53,7 +57,8 @@ function reset(){
 	$("#yodaHP").html(yoda.HP); 
 	$("#leiaHP").html(leia.HP);
 	$("#kyloHP").html(kylo.HP);
-	$("#vaderHP").html(vader.HP);	
+	$("#vaderHP").html(vader.HP);
+	$("#attack").empty();	
 }
 
 function classes() {
@@ -152,6 +157,9 @@ $("button").on("click", function(){
 	} else if (enemyCharacter=== vader){
 		$("#vaderHP").html(enemyCharacter.HP);
 	}
+	if (enemyCharacter != ""){
+		$("#attack").text(`You attack ${enemyCharacter.name} for ${newAttack} damage. ${enemyCharacter.name} attacks you back for ${enemyCharacter.counterAttack} damage.`)
+	} 
 	//increase playerCharacterAttack by its base
 	if (playerCharacter.HP <= 0){
 	alert('You lost! Try again!');	
@@ -163,18 +171,22 @@ $("button").on("click", function(){
 			$("#yoda").addClass("hidden");
 			$(".master").append($("#yoda"));
 			enemyCharacter= "";
+			$("#attack").empty();
 		} else if (enemyCharacter=== leia){
 			$("#princess").addClass("hidden");
 			$(".lukeSister").append($("#princess"));
 			enemyCharacter="";
+			$("#attack").empty();
 		} else if (enemyCharacter === kylo) {
 			$("#ben").addClass("hidden");
 			$(".lukeNephew").append($("#ben"));
 			enemyCharacter="";
+			$("#attack").empty();
 		} else if (enemyCharacter=== vader){
 			$("#anikin").addClass("hidden");
 			$(".lukeFather").append($("#anikin"));
 			enemyCharacter="";
+			$("#attack").empty();
 		}
 	}	
 	if ($("#availableEnemies").html() == " " && $("#Enemy").html()==" " && playerCharacter.HP >0){
