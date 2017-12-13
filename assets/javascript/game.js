@@ -41,18 +41,18 @@ function reset(){
 	enemyCharacter = ""; 
 	buttonCount = 0;
 	flag=0;
-	$("#anikin").removeClass("hidden");
-	$("#ben").removeClass("hidden");
-	$("#princess").removeClass("hidden");
+	$("#vader").removeClass("hidden");
+	$("#kylo").removeClass("hidden");
+	$("#leia").removeClass("hidden");
 	$("#yoda").removeClass("hidden");
-	$("#anikin").addClass("visible");
-	$("#ben").addClass("visible");
-	$("#princess").addClass("visible");
+	$("#vader").addClass("visible");
+	$("#kylo").addClass("visible");
+	$("#leia").addClass("visible");
 	$("#yoda").addClass("visible");
 	$(".master").append($("#yoda"));
-	$(".lukeSister").append($("#princess"));
-	$(".lukeNephew").append($("#ben"));
-	$(".lukeFather").append($("#anikin"));
+	$(".lukeSister").append($("#leia"));
+	$(".lukeNephew").append($("#kylo"));
+	$(".lukeFather").append($("#vader"));
 	$(".img-box").addClass("whiteBox");	
 	$("#yodaHP").html(yoda.HP); 
 	$("#leiaHP").html(leia.HP);
@@ -66,67 +66,58 @@ function classes() {
 	$("#availableEnemies .img-box").removeClass("whiteBox");
 	$("#playerChoice .img-box").addClass("whiteBox");
 }
-var elementIds= ["#yoda","#princess", "#ben", "#anikin"];
+var elementIds= ["#yoda","#leia", "#kylo", "#vader"];
 
 //when clicked move playerChoice to 'Your Character and move others to Enemies Availavle to attack'
-var flag=0;
-var check =0; 
 
-
-$("#yoda").on("click", function(){
-	if (flag !=1 && flag !=0 && $("#Enemy").html() == " ") {
-		$("#Enemy").append($("#yoda"));
-		enemyCharacter=yoda; 
-		enemyCharacter.counterAttack=yoda.counterAttack
-	}
-	 else if (flag ===0){
-	 	flag=1;
-	 	playerCharacter=yoda;
+ $("#yoda").on("click", function(){
+	if (playerCharacter ==  ""){
+		playerCharacter=yoda;
 		$("#playerChoice").append($("#yoda"));
-		$("#availableEnemies").append($("#princess"),$("#ben"),$("#anikin"));
+		 $("#availableEnemies").append($("#leia"),$("#kylo"),$("#vader"));
 		classes();
-	}
-});
-$("#princess").on("click", function(){
-	if (flag !=2 && flag !=0 && $("#Enemy").html() == " "){
-		$("#Enemy").append($("#princess"));
-		enemyCharacter=leia;
-		enemyCharacter.counterAttack=leia.counterAttack
-	}
-	else if (flag ===0){
-		flag=2;
+	} else if (playerCharacter !=  "" && enemyCharacter ==  "" && playerCharacter != yoda) {
+  		$("#Enemy").append($("#yoda"));
+  		enemyCharacter=yoda; 
+  		enemyCharacter.counterAttack=yoda.counterAttack
+  		}
+  });
+  $("#leia").on("click", function(){
+	if (playerCharacter ==  ""){
 		playerCharacter=leia;
-		$("#playerChoice").append($("#princess"));
-		$("#availableEnemies").append($("#yoda"), $("#ben"),$("#anikin"));
+		$("#playerChoice").append($("#leia"));
+		$("#availableEnemies").append($("#yoda"), $("#kylo"),$("#vader"));
 		classes();
-	}	
-});
-$("#ben").on("click", function(){
-	if (flag !=3 && flag !=0 && $("#Enemy").html() == " "){
-		$("#Enemy").append($("#ben"));
-		enemyCharacter=kylo;
-		enemyCharacter.counterAttack=kylo.counterAttack;
-	}else if (flag===0){
-		flag=3;
+	}else if (playerCharacter !=  "" && enemyCharacter ==  "" && playerCharacter !=leia){
+  		$("#Enemy").append($("#leia"));
+  		enemyCharacter=leia;
+  		enemyCharacter.counterAttack=leia.counterAttack
+  	}
+  });
+  $("#kylo").on("click", function(){	  
+	if (playerCharacter ==  ""){
 		playerCharacter=kylo;
-		$("#playerChoice").append($("#ben"));
-		$("#availableEnemies").append($("#yoda"), $("#princess"), $("#anikin"));
+		$("#playerChoice").append($("#kylo"));
+		$("#availableEnemies").append($("#yoda"), $("#leia"), $("#vader"));
 		classes();;
-	}
-});
-$("#anikin").on("click",function(){
-	if (flag !=4 && flag !=0 && $("#Enemy").html() == " "){
-		$("#Enemy").append($("#anikin"));
-		enemyCharacter=vader;
-		enemyCharacter.counterAttack=vader.counterAttack;
-	}else if (flag===0){
-		flag=4;
+	} else if (playerCharacter !=  "" && enemyCharacter ==  "" && playerCharacter != kylo){
+  		$("#Enemy").append($("#kylo"));
+  		enemyCharacter=kylo;
+  		enemyCharacter.counterAttack=kylo.counterAttack;
+  	}  
+  });
+  $("#vader").on("click",function(){
+	if (playerCharacter ==  ""){
 		playerCharacter=vader;
-		$("#playerChoice").append($("#anikin"));
-		$("#availableEnemies").append($("#yoda"), $("#princess"),$("#ben"));
+		$("#playerChoice").append($("#vader"));
+		$("#availableEnemies").append($("#yoda"), $("#leia"),$("#kylo"));
 		classes();		
-	}
-});
+	} else if (playerCharacter !=  "" && enemyCharacter ==  "" && playerCharacter!= vader){
+  		$("#Enemy").append($("#vader"));
+  		enemyCharacter=vader;
+  		enemyCharacter.counterAttack=vader.counterAttack;
+	  }  
+  });
 
 $("button").on("click", function(){
 	if (enemyCharacter == "") {
@@ -173,18 +164,18 @@ $("button").on("click", function(){
 			enemyCharacter= "";
 			$("#attack").empty();
 		} else if (enemyCharacter=== leia){
-			$("#princess").addClass("hidden");
-			$(".lukeSister").append($("#princess"));
+			$("#leia").addClass("hidden");
+			$(".lukeSister").append($("#leia"));
 			enemyCharacter="";
 			$("#attack").empty();
 		} else if (enemyCharacter === kylo) {
-			$("#ben").addClass("hidden");
-			$(".lukeNephew").append($("#ben"));
+			$("#kylo").addClass("hidden");
+			$(".lukeNephew").append($("#kylo"));
 			enemyCharacter="";
 			$("#attack").empty();
 		} else if (enemyCharacter=== vader){
-			$("#anikin").addClass("hidden");
-			$(".lukeFather").append($("#anikin"));
+			$("#vader").addClass("hidden");
+			$(".lukeFather").append($("#vader"));
 			enemyCharacter="";
 			$("#attack").empty();
 		}
