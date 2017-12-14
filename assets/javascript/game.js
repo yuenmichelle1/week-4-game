@@ -2,31 +2,35 @@ var yoda = {
 	"HP" : 200,
 	"Attack":15,
 	"counterAttack": 15,
-	"name" : "Yoda"
+	"name" : "yoda",
+	"classBox": "master"
 };
 var leia = {
 	"HP" :140,
 	"Attack" : 4,
 	"counterAttack": 9,
-	"name": "Leia"
+	"name": "leia",
+	"classBox":"lukeSister"
 };
 var kylo = {
 	"HP" : 160,
 	"Attack":3,
 	"counterAttack":6,
-	"name": "Kylo Ren"
+	"name": "kylo",
+	"classBox":"lukeNephew"
 };
 var vader = {
 	"HP" : 180,
 	"Attack":5,
 	"counterAttack":5,
-	"name": "Darth Vader"
+	"name": "vader",
+	"classBox": "lukeFather"
 };
 
 var playerCharacter = "";
 var enemyCharacter = ""; 
 var buttonCount = 0;
-$("#yodaHP").html(yoda.HP);
+$("#yodaHP").html(yoda.HP); 
 $("#leiaHP").html(leia.HP);
 $("#kyloHP").html(kylo.HP);
 $("#vaderHP").html(vader.HP);
@@ -84,6 +88,11 @@ function getPlayerObjectFromId(id) {
 	}
 }
 
+function enemyCharacterDefeated(obj){
+	$(`#${obj.name}`).addClass("hidden");
+	$(`.${obj.classBox}`).append($(`#${obj.name}`));
+}
+
 //when clicked move playerChoice to 'Your Character and move others to Enemies Availavle to attack'
 
 $(".character").on("click", function(){
@@ -132,6 +141,7 @@ $("button").on("click", function(){
 	} else if (enemyCharacter=== vader){
 		$("#vaderHP").html(enemyCharacter.HP);
 	}
+
 	if (enemyCharacter != ""){
 		$("#attack").text(`You attack ${enemyCharacter.name} for ${newAttack} damage. ${enemyCharacter.name} attacks you back for ${enemyCharacter.counterAttack} damage.`)
 	} 
@@ -142,28 +152,11 @@ $("button").on("click", function(){
 	};
 	
 	if (enemyCharacter.HP <=0){
-		if (enemyCharacter=== yoda){
-			$("#yoda").addClass("hidden");
-			$(".master").append($("#yoda"));
-			enemyCharacter= "";
-			$("#attack").empty();
-		} else if (enemyCharacter=== leia){
-			$("#leia").addClass("hidden");
-			$(".lukeSister").append($("#leia"));
-			enemyCharacter="";
-			$("#attack").empty();
-		} else if (enemyCharacter === kylo) {
-			$("#kylo").addClass("hidden");
-			$(".lukeNephew").append($("#kylo"));
-			enemyCharacter="";
-			$("#attack").empty();
-		} else if (enemyCharacter=== vader){
-			$("#vader").addClass("hidden");
-			$(".lukeFather").append($("#vader"));
-			enemyCharacter="";
-			$("#attack").empty();
-		}
+		enemyCharacterDefeated(enemyCharacter);
+		$("#attack").empty();
+		enemyCharacter ="";
 	}	
+	
 	if ($("#availableEnemies").html() == " " && $("#Enemy").html()==" " && playerCharacter.HP >0){
 		alert('You won!');
 		reset();
