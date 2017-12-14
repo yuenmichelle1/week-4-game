@@ -1,4 +1,3 @@
-
 var yoda = {
 	"HP" : 200,
 	"Attack":15,
@@ -27,7 +26,7 @@ var vader = {
 var playerCharacter = "";
 var enemyCharacter = ""; 
 var buttonCount = 0;
-$("#yodaHP").html(yoda.HP); 
+$("#yodaHP").html(yoda.HP);
 $("#leiaHP").html(leia.HP);
 $("#kyloHP").html(kylo.HP);
 $("#vaderHP").html(vader.HP);
@@ -41,14 +40,8 @@ function reset(){
 	enemyCharacter = ""; 
 	buttonCount = 0;
 	flag=0;
-	$("#vader").removeClass("hidden");
-	$("#kylo").removeClass("hidden");
-	$("#leia").removeClass("hidden");
-	$("#yoda").removeClass("hidden");
-	$("#vader").addClass("visible");
-	$("#kylo").addClass("visible");
-	$("#leia").addClass("visible");
-	$("#yoda").addClass("visible");
+	$(".character").removeClass("hidden");
+	$(".character").addClass("visible");
 	$(".master").append($("#yoda"));
 	$(".lukeSister").append($("#leia"));
 	$(".lukeNephew").append($("#kylo"));
@@ -59,65 +52,56 @@ function reset(){
 	$("#kyloHP").html(kylo.HP);
 	$("#vaderHP").html(vader.HP);
 	$("#attack").empty();	
+	availablecharacterIds= ['yoda', 'kylo', 'vader', 'leia'];
 }
 
+//classes upon User Selection
 function classes() {
 	$("#availableEnemies .img-box").addClass("redEnemy");
 	$("#availableEnemies .img-box").removeClass("whiteBox");
 	$("#playerChoice .img-box").addClass("whiteBox");
 }
-var elementIds= ["#yoda","#leia", "#kylo", "#vader"];
+var availablecharacterIds= ['yoda', 'kylo', 'vader', 'leia'];
+
+function moveToEnemyArea(id){
+	var characterIndex= availablecharacterIds.indexOf(id);
+	var remainingCharactersArr= availablecharacterIds.splice(characterIndex,1);
+	for (var i=0; i<availablecharacterIds.length;i++){
+		$("#availableEnemies").append($(`#${availablecharacterIds[i]}`));
+	}
+
+}
+
+function getPlayerObjectFromId(id) {
+	if (id=== 'yoda'){
+        return yoda;
+    } else if (id === 'leia'){
+        return leia;
+    } else if (id === 'kylo'){
+        return kylo;
+    } else if (id=== 'vader'){
+        return vader;
+	}
+}
 
 //when clicked move playerChoice to 'Your Character and move others to Enemies Availavle to attack'
 
- $("#yoda").on("click", function(){
-	if (playerCharacter ==  ""){
-		playerCharacter=yoda;
-		$("#playerChoice").append($("#yoda"));
-		 $("#availableEnemies").append($("#leia"),$("#kylo"),$("#vader"));
+$(".character").on("click", function(){
+    var getId = this.id;
+    console.log(getId);
+
+	var clickedPlayer = getPlayerObjectFromId(getId);
+	
+    if (playerCharacter ==  ""){
+        $("#playerChoice").append($(`#${getId}`));
+		playerCharacter = clickedPlayer;
+		moveToEnemyArea(getId);
 		classes();
-	} else if (playerCharacter !=  "" && enemyCharacter ==  "" && playerCharacter != yoda) {
-  		$("#Enemy").append($("#yoda"));
-  		enemyCharacter=yoda; 
-  		enemyCharacter.counterAttack=yoda.counterAttack
-  		}
-  });
-  $("#leia").on("click", function(){
-	if (playerCharacter ==  ""){
-		playerCharacter=leia;
-		$("#playerChoice").append($("#leia"));
-		$("#availableEnemies").append($("#yoda"), $("#kylo"),$("#vader"));
-		classes();
-	}else if (playerCharacter !=  "" && enemyCharacter ==  "" && playerCharacter !=leia){
-  		$("#Enemy").append($("#leia"));
-  		enemyCharacter=leia;
-  		enemyCharacter.counterAttack=leia.counterAttack
-  	}
-  });
-  $("#kylo").on("click", function(){	  
-	if (playerCharacter ==  ""){
-		playerCharacter=kylo;
-		$("#playerChoice").append($("#kylo"));
-		$("#availableEnemies").append($("#yoda"), $("#leia"), $("#vader"));
-		classes();;
-	} else if (playerCharacter !=  "" && enemyCharacter ==  "" && playerCharacter != kylo){
-  		$("#Enemy").append($("#kylo"));
-  		enemyCharacter=kylo;
-  		enemyCharacter.counterAttack=kylo.counterAttack;
-  	}  
-  });
-  $("#vader").on("click",function(){
-	if (playerCharacter ==  ""){
-		playerCharacter=vader;
-		$("#playerChoice").append($("#vader"));
-		$("#availableEnemies").append($("#yoda"), $("#leia"),$("#kylo"));
-		classes();		
-	} else if (playerCharacter !=  "" && enemyCharacter ==  "" && playerCharacter!= vader){
-  		$("#Enemy").append($("#vader"));
-  		enemyCharacter=vader;
-  		enemyCharacter.counterAttack=vader.counterAttack;
-	  }  
-  });
+    } else if (enemyCharacter =="" && clickedPlayer != playerCharacter) {
+		enemyCharacter = clickedPlayer;
+		$("#Enemy").append($(`#${getId}`));
+    }
+})
 
 $("button").on("click", function(){
 	if (enemyCharacter == "") {
@@ -186,4 +170,3 @@ $("button").on("click", function(){
 		}
 
 })
-
